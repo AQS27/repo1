@@ -28,3 +28,14 @@ Route::get('/actividades/create', [App\Http\Controllers\ActividadesController::c
 Route::get('/actividades/{actividades}/edit', [App\Http\Controllers\ActividadesController::class, 'edit']);
 //Ruta para el envio de informacio a la base de datos
 Route::post('/actividades', [App\Http\Controllers\ActividadesController::class, 'sendData']);
+//Ruta para actualizar las actividades
+Route::put('/actividades/{actividades}', [App\Http\Controllers\ActividadesController::class, 'update']);
+//Ruta para eleiminar una actividad
+Route::delete('/actividades/{actividades}', [App\Http\Controllers\ActividadesController::class, 'eliminar']);
+
+
+//Ruta Entrenadores
+Route::resource('entrenadores', 'App\Http\Controllers\EntrenadorController');
+
+//Ruta Clientes
+Route::resource('clientes', 'App\Http\Controllers\ClientesController');

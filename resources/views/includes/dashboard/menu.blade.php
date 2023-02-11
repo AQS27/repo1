@@ -1,10 +1,18 @@
 
-<h6 class="navbar-heading text-muted">Gestión</h6>
+<h6 class="navbar-heading text-muted">
+    @if (auth()->user()->role == 'admin')
+        Gestión
+    @else
+        Menú
+    @endif
+</h6>
 
 <ul class="navbar-nav">
+
+        @if (auth()->user()->role == 'admin')
                     <li class="nav-item  active ">
-                        <a class="nav-link  active " href="./index.html">
-                            <i class="ni ni-tv-2 text-danger"></i> Dashboard
+                        <a class="nav-link  active " href="{{ url('/home') }}">
+                            <i class="ni ni-tv-2 text-danger"></i> Panel de Datos
                         </a>
                     </li>
                     <li class="nav-item">
@@ -13,16 +21,45 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="./examples/maps.html">
+                        <a class="nav-link " href="{{ url('/entrenadores') }}">
                             <i class="ni ni-circle-08 text-orange"></i> Entrenadores
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="./examples/profile.html">
+                        <a class="nav-link " href="{{ url('/clientes') }}">
                             <i class="ni ni-single-02 text-blue"></i> Clientes
                         </a>
                     </li>
-                    
+
+            @elseif (auth()->user()->role == 'entrenador')
+
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ url('/clientes') }}">
+                            <i class="ni ni-calendar-grid-58 text-primary"></i> Gestionar Horarios
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ url('/clientes') }}">
+                            <i class="fas fa-clock text-info"></i> Mis Actividades
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ url('/clientes') }}">
+                            <i class="fas fa-bed text-danger"></i> Mis Alumnos
+                        </a>
+                    </li>
+            @else 
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ url('/clientes') }}">
+                            <i class="ni ni-calendar-grid-58 text-primary"></i> Reservar Actividad
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ url('/clientes') }}">
+                            <i class="fas fa-clock text-info"></i> Mis Actividades
+                        </a>
+                    </li>
+        @endif
                     
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout')}}"
@@ -34,6 +71,7 @@
                         @csrf
                     </li>
                 </ul>
+        @if (auth()->user()->role == 'admin')
                 <!-- Divider -->
                 <hr class="my-3">
                 <!-- Heading -->
@@ -52,4 +90,4 @@
                     </li>
                     
                 </ul>
-                
+        @endif
