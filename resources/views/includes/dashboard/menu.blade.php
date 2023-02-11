@@ -9,9 +9,10 @@
 
 <ul class="navbar-nav">
 
-        @if (auth()->user()->role == 'admin')
+        @if (auth()->user()->rol == 'admin')
                     <li class="nav-item  active ">
-                        <a class="nav-link  active " href="{{ url('/home') }}">
+                        
+                        <a class="nav-link  active " href="{{ url('/') }}">
                             <i class="ni ni-tv-2 text-danger"></i> Panel de Datos
                         </a>
                     </li>
@@ -31,7 +32,7 @@
                         </a>
                     </li>
 
-            @elseif (auth()->user()->role == 'entrenador')
+            @elseif (auth()->user()->rol == 'entrenador')
 
                     <li class="nav-item">
                         <a class="nav-link " href="{{ url('/clientes') }}">
@@ -48,8 +49,9 @@
                             <i class="fas fa-bed text-danger"></i> Mis Alumnos
                         </a>
                     </li>
-            @else 
-                    <li class="nav-item">
+            @else
+            <li class="nav-item">
+                
                         <a class="nav-link " href="{{ url('/clientes') }}">
                             <i class="ni ni-calendar-grid-58 text-primary"></i> Reservar Actividad
                         </a>
@@ -67,8 +69,10 @@
                         >
                             <i class="fas fa-sign-in-alt"></i> Cerrar Sesión
                         </a>
-                        <form action="{{ route('logout')}}" method="POST" style="display: none;" id="formLogout"></form>
+                        <form action="{{ route('logout')}}" method="POST" style="display: none;" id="formLogout">
                         @csrf
+                        </form>
+                        
                     </li>
                 </ul>
         @if (auth()->user()->role == 'admin')

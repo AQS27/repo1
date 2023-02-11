@@ -14,12 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home');
+})->middleware('auth')->name('home');
+
+
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Ruta Actividades
 Route::get('/actividades', [App\Http\Controllers\ActividadesController::class, 'index']);
 //Ruta para crear una actividad
